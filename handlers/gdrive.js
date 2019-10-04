@@ -7,43 +7,29 @@ class GDriveController extends TelegramBaseController {
 
     parseLink($) {
 
-        var matches = $.message.text.match(/\bhttps?:\/\/\S+/gi);
-
-        var fileID = "";
-
-        if ($.message.text.indexOf("view") !== -1) {
-            fileID = matches[0].split("/")[5];
-        } else if ($.message.text.indexOf("open?id=") !== -1) {
-            fileID = matches[0].split("open?id=")[1].trim()
-        } else if ($.message.text.indexOf("uc?id=") !== -1) {
-            fileID = matches[0].split("uc?id=")[1].trim()
+        if (!$.command.success || $.command.arguments.length === 0) {
+            $.sendMessage("Usage: /gdrive url", {
+                parse_mode: "markdown",
+                reply_to_message_id: $.message.messageId
+            });
+            return;
         }
+
+        if (!$.message.text.includes("https://drive.google.com/")) {
+            $.sendMessage("Invalid URL", {
+                parse_mode: "markdown",
+                reply_to_message_id: $.message.messageId
+            });
+            return;
+        }
+
+        var shell = require('shelljs');
+        var fileID = shell.exec('echo ' + $.message.text + ' | sed "s|https://drive.google.com/||g" | sed "s|/view.*||g" | sed "s|.*id=||g" | sed "s|.*file/d/||g" | sed "s|&export=.*||g" ');
+        console.log('gdrive fileID: ', fileID + "");
 
         var cookieRequest = request.defaults({
             jar: true
         })
-
-        //        stats.find({}, function (err, docs) {
-        //            if (!docs || docs.length === 0 || !docs[0].gdrive) {
-        //
-        //                stats.update({
-        //                    _id: docs[0]._id
-        //                }, {
-        //                    $set: {
-        //                        gdrive: 1,
-        //                    }
-        //                });
-        //            } else {
-        //                stats.update({
-        //                    _id: docs[0]._id
-        //                }, {
-        //                    $set: {
-        //                        gdrive: docs[0].gdrive + 1,
-        //                    }
-        //                });
-        //
-        //            }
-        //        });
 
         var exportURL = "https://drive.google.com/uc?export=download&id=" + fileID;
         cookieRequest.get({

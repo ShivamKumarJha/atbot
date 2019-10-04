@@ -7,13 +7,13 @@ var Queue = require('better-queue');
 var q = new Queue(function (input, cb) {
     var $ = input.scope;
     var urlarg = input.url;
-    var initialMessage = "Starting dump...";
+    var initialMessage = "Starting dummydt script...";
     $.sendMessage(initialMessage, {
         parse_mode: "markdown",
         reply_to_message_id: $.message.messageId
     }).then(function (msg) {
-        var dump = spawn(__dirname + "/../helpers/romextract.sh", [urlarg]);
-        dump.stdout.on('data', function (data) {
+        var ddt = spawn(__dirname + "/../helpers/dummydt.sh", [urlarg]);
+        ddt.stdout.on('data', function (data) {
             var message = data.toString();
             initialMessage = initialMessage + "\n" + message.trim()
             tg.api.editMessageText("`" + initialMessage + "`", {
@@ -23,10 +23,10 @@ var q = new Queue(function (input, cb) {
                 message_id: msg._messageId
             });
         });
-        dump.stderr.on('data', function (data) {
+        ddt.stderr.on('data', function (data) {
             //console.log('stderr: ' + data.toString());
         });
-        dump.on('exit', function (code) {
+        ddt.on('exit', function (code) {
             $.sendMessage("Job done", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
@@ -39,8 +39,8 @@ var q = new Queue(function (input, cb) {
     batchSize: 1
 })
 
-class DumpController extends TelegramBaseController {
-    dump($) {
+class DdtController extends TelegramBaseController {
+    ddt($) {
         if (!config.sudoers.includes($.message.from.id)) {
             $.sendMessage("Not authorised!", {
                 parse_mode: "markdown",
@@ -49,7 +49,7 @@ class DumpController extends TelegramBaseController {
             return;
         }
         if (!$.command.success || $.command.arguments.length === 0) {
-            $.sendMessage("Usage: /dump url", {
+            $.sendMessage("Usage: /ddt url", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
             });
@@ -68,8 +68,8 @@ class DumpController extends TelegramBaseController {
     }
     get routes() {
         return {
-            'dumpHandler': 'dump',
+            'ddtHandler': 'ddt',
         }
     }
 }
-module.exports = DumpController;
+module.exports = DdtController;

@@ -5,15 +5,16 @@ var spawn = require('child_process').spawn;
 var Queue = require('better-queue');
 
 var q = new Queue(function (input, cb) {
+
     var $ = input.scope;
     var urlarg = input.url;
-    var initialMessage = "Starting dump...";
+    var initialMessage = "Starting blob script...";
     $.sendMessage(initialMessage, {
         parse_mode: "markdown",
         reply_to_message_id: $.message.messageId
     }).then(function (msg) {
-        var dump = spawn(__dirname + "/../helpers/romextract.sh", [urlarg]);
-        dump.stdout.on('data', function (data) {
+        var blobs = spawn(__dirname + "/../helpers/blobs.sh", [urlarg]);
+        blobs.stdout.on('data', function (data) {
             var message = data.toString();
             initialMessage = initialMessage + "\n" + message.trim()
             tg.api.editMessageText("`" + initialMessage + "`", {
@@ -23,10 +24,10 @@ var q = new Queue(function (input, cb) {
                 message_id: msg._messageId
             });
         });
-        dump.stderr.on('data', function (data) {
+        blobs.stderr.on('data', function (data) {
             //console.log('stderr: ' + data.toString());
         });
-        dump.on('exit', function (code) {
+        blobs.on('exit', function (code) {
             $.sendMessage("Job done", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
@@ -39,8 +40,9 @@ var q = new Queue(function (input, cb) {
     batchSize: 1
 })
 
-class DumpController extends TelegramBaseController {
-    dump($) {
+class BlobsController extends TelegramBaseController {
+
+    blobs($) {
         if (!config.sudoers.includes($.message.from.id)) {
             $.sendMessage("Not authorised!", {
                 parse_mode: "markdown",
@@ -49,7 +51,7 @@ class DumpController extends TelegramBaseController {
             return;
         }
         if (!$.command.success || $.command.arguments.length === 0) {
-            $.sendMessage("Usage: /dump url", {
+            $.sendMessage("Usage: /blobs url", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
             });
@@ -68,8 +70,9 @@ class DumpController extends TelegramBaseController {
     }
     get routes() {
         return {
-            'dumpHandler': 'dump',
+            'blobsHandler': 'blobs',
         }
     }
 }
-module.exports = DumpController;
+
+module.exports = BlobsController;
