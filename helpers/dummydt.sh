@@ -3,7 +3,7 @@
 [[ -z "$1" ]] && exit 1
 echo "Cloning repo"
 android_tools="$(mktemp tgbotXXX -d --tmpdir=/home/$USER)"
-git clone -q git@github.com:ShivamKumarJha/android_tools.git "$android_tools" --depth 1
+git clone -q https://github.com/ShivamKumarJha/android_tools.git "$android_tools" --depth 1
 
 for var in "$@"; do
     mkdir -p "$android_tools/input"
