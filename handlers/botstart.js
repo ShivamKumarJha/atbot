@@ -11,6 +11,8 @@ class BotStartController extends TelegramBaseController {
             "_Pushes proprietary blobs to _[AndroidBlobs](https://github.com/AndroidBlobs)" +
             "\n\n/ddt <OTA URL>\n" +
             "_Creates a _[Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)" +
+            "\n\n/dall <OTA URL>\n" +
+            "_/ddt + /blobs + /dump._" +
             "\n\n/dump <OTA URL>\n" +
             "_Pushes ROM dump to _[AndroidDumps](https://github.com/AndroidDumps)" +
             "\n\n/gdrive <URL>\n" +

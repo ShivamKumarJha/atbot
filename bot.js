@@ -28,6 +28,10 @@ tg.router
         new exports["ddt"]()
     )
     .when(
+        new TextCommand('/dall', 'dallHandler', 'ddt + blobs + dump'),
+        new exports["dall"]()
+    )
+    .when(
         new TextCommand('/dump', 'dumpHandler', 'Pushes ROM dump to https://github.com/AndroidDumps'),
         new exports["dump"]()
     )
