@@ -37,7 +37,7 @@ var q = new Queue(function (input, cb) {
             })
             cb()
         } else {
-            $.sendMessage("Job failed", {
+            $.sendMessage("Job failed for [URL](" + urlarg + ")", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
             })

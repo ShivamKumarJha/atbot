@@ -28,7 +28,7 @@ var q = new Queue(function (input, cb) {
             //console.log('stderr: ' + data.toString());
         });
         blobs.on('exit', function (code) {
-            $.sendMessage("Job done", {
+            $.sendMessage("Job done for [URL](" + urlarg + ")", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
             })
