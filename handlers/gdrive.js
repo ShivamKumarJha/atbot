@@ -23,9 +23,17 @@ class GDriveController extends TelegramBaseController {
             return;
         }
 
-        var shell = require('shelljs');
-        var fileID = shell.exec('echo ' + $.message.text + ' | sed "s|https://drive.google.com/||g" | sed "s|/view.*||g" | sed "s|.*id=||g" | sed "s|.*file/d/||g" | sed "s|&export=.*||g" ');
-        console.log('gdrive fileID: ', fileID + "");
+        var matches = $.message.text.match(/\bhttps?:\/\/\S+/gi);
+
+        var fileID = "";
+
+        if ($.message.text.indexOf("view") !== -1) {
+            fileID = matches[0].split("/")[5];
+        } else if ($.message.text.indexOf("open?id=") !== -1) {
+            fileID = matches[0].split("open?id=")[1].trim()
+        } else if ($.message.text.indexOf("uc?id=") !== -1) {
+            fileID = matches[0].split("uc?id=")[1].trim()
+        }
 
         var cookieRequest = request.defaults({
             jar: true
