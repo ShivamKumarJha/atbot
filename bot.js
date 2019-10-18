@@ -44,10 +44,6 @@ tg.router
         new exports["botstart"]()
     )
     .when(
-        new TextCommand('/id', 'idHandler', 'Show chat ID'),
-        new exports["id"]()
-    )
-    .when(
         new TextCommand('/gdrive', 'gdriveFilterHandler', 'Generates direct download link for gdrive'),
         new exports["gdrive"]()
     )
