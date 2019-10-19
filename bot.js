@@ -79,3 +79,7 @@ tg.router
         new TextCommand('/xiaomi', 'xiaomiHandler', 'Xiaomi OTA download'),
         new exports["xiaomi"]()
     )
+    .when(
+        new TextCommand('/getdump', 'dumpHandler', ''),
+        new exports["github"]()
+    )
