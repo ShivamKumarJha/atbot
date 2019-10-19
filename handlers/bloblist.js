@@ -17,7 +17,7 @@ var q = new Queue(function (input, cb) {
         var shell = require('shelljs');
         var tdir = shell.exec('mktemp -d', {silent:true}).stdout;
         console.log('Repo dir: ', tdir);
-        shell.exec('git clone -q --depth 1 git@github.com:ShivamKumarJha/android_tools.git ' + tdir);
+        shell.exec('git clone -q --depth 1 https://github.com/ShivamKumarJha/android_tools.git ' + tdir);
         shell.cd('' + tdir);
         if ( shell.exec('./tools/proprietary-files.sh ' + urlarg + ' > /dev/null 2>&1 ' ).code == 0) {
             shell.cd('working');
@@ -26,9 +26,9 @@ var q = new Queue(function (input, cb) {
             shell.exec('git init', {silent:true}).stdout;
             shell.exec('git add proprietary-files.txt', {silent:true}).stdout;
             shell.exec('git commit -m proprietary-files.txt', {silent:true}).stdout;
-            shell.exec('git push git@bitbucket.org:ShivamKumarJha/bloblist.git master --force', {silent:true}).stdout;
+            shell.exec('git push https://$GIT_TOKEN@github.com/ShivamKumarJha/bloblists.git master --force', {silent:true}).stdout;
             var commitid = shell.exec('git log --format=format:%H | head -n 1', {silent:true}).stdout;
-            var filelink = 'https://bitbucket.org/ShivamKumarJha/bloblist/raw/' + commitid + '/proprietary-files.txt';
+            var filelink = 'https://raw.githubusercontent.com/ShivamKumarJha/bloblists/' + commitid + '/proprietary-files.txt';
             console.log('bloblist commit: ', commitid);
             console.log('bloblist link: ', filelink);
             $.sendMessage("Link: [HERE](" + filelink + ")\nJob done", {
