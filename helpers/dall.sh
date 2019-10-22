@@ -22,11 +22,10 @@ for var in "$@"; do
     echo "Extracting ROM"
     bash "$android_tools/tools/rom_extract.sh" "$android_tools/input/$FILE*"
     echo "Preparing Dummy DT"
-    bash "$android_tools/tools/dummy_dt.sh" "$android_tools/dumps/$UNZIP_DIR" > /dev/null 2>&1
+    bash "$android_tools/tools/dummy_dt.sh" "$android_tools/dumps/$UNZIP_DIR"
     echo "Pushing to AndroidBlobs GitHub"
     bash "$android_tools/helpers/androidblobs.sh" "$android_tools/dumps/$UNZIP_DIR" > /dev/null 2>&1
     echo "Pushing to AndroidDumps GitHub"
     bash "$android_tools/helpers/dumpyara_push.sh" "$android_tools/dumps/$UNZIP_DIR" > /dev/null 2>&1
-    echo "Done"
 done
 rm -rf "$android_tools/"

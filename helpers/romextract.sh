@@ -23,6 +23,5 @@ for var in "$@"; do
     bash "$android_tools/tools/rom_extract.sh" "$android_tools/input/$FILE*"
     echo "Pushing to AndroidDumps GitHub"
     bash "$android_tools/helpers/dumpyara_push.sh" "$android_tools/dumps/$UNZIP_DIR" > /dev/null 2>&1
-    echo "Done"
 done
 rm -rf "$android_tools/"
