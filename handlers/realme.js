@@ -15,7 +15,28 @@ class RealmeController extends TelegramBaseController {
             if (err) return console.error(err);
 
             let instance = cheerio.load(body);
-            var realmelinks = "";
+            var realmelinks = "Global ROMs\n";
+
+            instance('.software-button').each((i, el) => {
+                const item = instance(el).attr('title').replace(" Software Download","");
+                const link = instance(el).attr('data-href');
+                realmelinks += "[" + item + "](" + link + ")\n";
+            });
+            //console.log(realmelinks);
+            $.sendMessage(realmelinks, {
+                parse_mode: "markdown",
+                reply_to_message_id: $.message.messageId
+            }).catch(err => console.log(err))
+        });
+
+        request({
+            method: 'GET',
+            url: 'https://www.realme.com/cn/support/software-update'
+        }, (err, res, body) => {
+            if (err) return console.error(err);
+
+            let instance = cheerio.load(body);
+            var realmelinks = "China ROMs\n";
 
             instance('.software-button').each((i, el) => {
                 const item = instance(el).attr('title').replace(" Software Download","");
