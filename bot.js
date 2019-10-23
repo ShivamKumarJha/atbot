@@ -76,10 +76,6 @@ tg.router
         new exports["twrp"]()
     )
     .when(
-        new TextCommand('/xiaomi', 'xiaomiHandler', 'Xiaomi OTA download'),
-        new exports["xiaomi"]()
-    )
-    .when(
         new TextCommand('/getdump', 'dumpHandler', ''),
         new exports["github"]()
     )

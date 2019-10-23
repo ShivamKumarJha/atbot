@@ -30,9 +30,7 @@ class BotStartController extends TelegramBaseController {
             "\n\n/op <codename>\n" +
             "_OnePlus OTA downloads._" +
             "\n\n/twrp <codename>\n" +
-            "_TWRP download._" +
-            "\n\n/xiaomi <codename>\n" +
-            "_Xiaomi OTA download._" , {
+            "_TWRP download._" , {
             parse_mode: "markdown",
             disable_web_page_preview: "True",
             reply_to_message_id: $.message.messageId
