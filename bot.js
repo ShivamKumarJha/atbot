@@ -68,14 +68,18 @@ tg.router
         new exports["gapps"]()
     )
     .when(
-        new TextCommand('/op', 'oneplusOTAHandler', 'OnePlus OTA downloads'),
+        new TextCommand('/op', 'oneplusOTAHandler', 'OnePlus OTA links'),
         new exports["oneplus"]()
     )
     .when(
-        new TextCommand('/twrp', 'twrpHandler', 'TWRP download'),
+        new TextCommand('/twrp', 'twrpHandler', 'TWRP links'),
         new exports["twrp"]()
     )
     .when(
-        new TextCommand('/getdump', 'dumpHandler', ''),
+        new TextCommand('/getdump', 'dumpHandler', 'Searches any existing ROM dump'),
         new exports["github"]()
+    )
+    .when(
+        new TextCommand('/realme', 'realmeHandler', 'Realme OTA links'),
+        new exports["realme"]()
     )
