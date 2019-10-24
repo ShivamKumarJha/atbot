@@ -68,7 +68,7 @@ tg.router
         new exports["gapps"]()
     )
     .when(
-        new TextCommand('/op', 'oneplusOTAHandler', 'OnePlus OTA links'),
+        new TextCommand('/oneplus', 'oneplusOTAHandler', 'OnePlus OTA links'),
         new exports["oneplus"]()
     )
     .when(

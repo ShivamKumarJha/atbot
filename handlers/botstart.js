@@ -27,7 +27,7 @@ class BotStartController extends TelegramBaseController {
             "_Shows device specs._" +
             "\n\n/gapps <codename>\n" +
             "_Various latest gapps links._" +
-            "\n\n/op <codename>\n" +
+            "\n\n/oneplus <codename>\n" +
             "_OnePlus OTA links._" +
             "\n\n/oppo\n" +
             "_Oppo OTA links._" +
