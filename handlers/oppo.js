@@ -1,13 +1,16 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController;
-const BotUtils = require('../utils')
 const cheerio = require('cheerio');
 const request = require('request');
+var Queue = require('better-queue');
 
-class OppoController extends TelegramBaseController {
-
-    getFirmwares($) {
-
+var q = new Queue(function (input, cb) {
+    var $ = input.scope;
+    var initialMessage = "Getting links";
+    $.sendMessage(initialMessage, {
+        parse_mode: "markdown",
+        reply_to_message_id: $.message.messageId
+    }).then(function (msg) {
         request({
             method: 'GET',
             url: 'https://oppo-in.custhelp.com/app/soft_update'
@@ -47,21 +50,33 @@ class OppoController extends TelegramBaseController {
                     for(let i = 0; i < devicelist.length; i++){
                         smessage += "[" + devicelist[i] + "](" + deviceota[i] + ")";
                     }
-                    //console.log(smessage);
-                    $.sendMessage(smessage, {
-                        parse_mode: "markdown"
-                    }).catch(err => console.log(err))
+                    initialMessage = initialMessage + "\n" + smessage;
+                    tg.api.editMessageText(initialMessage, {
+                        parse_mode: "markdown",
+                        chat_id: msg._chat._id,
+                        disable_web_page_preview: false,
+                        message_id: msg._messageId
+                    }).catch(err => console.log(err));
                 });
             }
-
         });
-    }
+    });
+}, {
+    concurrent: 1,
+    batchSize: 1
+})
 
+class OppoController extends TelegramBaseController {
+    getFirmwares($) {
+        q.push({
+            scope: $,
+            url: ""
+        })
+    }
     get routes() {
         return {
             'oppoHandler': 'getFirmwares',
         }
     }
 }
-
 module.exports = OppoController;

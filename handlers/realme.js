@@ -1,6 +1,5 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController;
-const BotUtils = require('../utils')
 const cheerio = require('cheerio');
 const request = require('request');
 
