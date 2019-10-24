@@ -20,10 +20,6 @@ require('fs').readdirSync(__dirname + '/handlers/').forEach(function (file) {
 // Routes
 tg.router
     .when(
-        new TextCommand('/blobs', 'blobsHandler', 'Pushes blobs to https://github.com/AndroidBlobs after generating proprietary-files.txt'),
-        new exports["blobs"]()
-    )
-    .when(
         new TextCommand('/ddt', 'ddtHandler', 'Creates a dummy device tree https://github.com/ShivamKumarJha/Dummy_DT'),
         new exports["ddt"]()
     )
