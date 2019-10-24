@@ -83,3 +83,7 @@ tg.router
         new TextCommand('/realme', 'realmeHandler', 'Realme OTA links'),
         new exports["realme"]()
     )
+    .when(
+        new TextCommand('/oppo', 'oppoHandler', 'Oppo OTA links'),
+        new exports["oppo"]()
+    )
