@@ -37,7 +37,7 @@ class OppoController extends TelegramBaseController {
                     var deviceota = [];
 
                     linstance('.msg_tit').each((i, el) => {
-                        const downloaddevice = linstance(el).html().replace("Latest Software Version for ","");;
+                        const downloaddevice = linstance(el).html().replace("Latest Software Version for ","");
                         devicelist.push(downloaddevice);
                     });
                     linstance('#rn_SoftUpdate_18_download').each((i, el) => {
@@ -47,10 +47,9 @@ class OppoController extends TelegramBaseController {
                     for(let i = 0; i < devicelist.length; i++){
                         smessage += "[" + devicelist[i] + "](" + deviceota[i] + ")";
                     }
-                    console.log(smessage);
+                    //console.log(smessage);
                     $.sendMessage(smessage, {
-                        parse_mode: "markdown",
-                        reply_to_message_id: $.message.messageId
+                        parse_mode: "markdown"
                     }).catch(err => console.log(err))
                 });
             }
