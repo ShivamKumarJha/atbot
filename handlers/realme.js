@@ -1,13 +1,13 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController;
 const cheerio = require('cheerio');
-const request = require('request');
+var rp = require('request-promise');
 
 class RealmeController extends TelegramBaseController {
 
     getFirmwares($) {
 
-        request({
+        rp({
             method: 'GET',
             url: 'https://www.realme.com/in/support/software-update'
         }, (err, res, body) => {
@@ -28,7 +28,7 @@ class RealmeController extends TelegramBaseController {
             }).catch(err => console.log(err))
         });
 
-        request({
+        rp({
             method: 'GET',
             url: 'https://www.realme.com/cn/support/software-update'
         }, (err, res, body) => {
@@ -58,3 +58,4 @@ class RealmeController extends TelegramBaseController {
 }
 
 module.exports = RealmeController;
+

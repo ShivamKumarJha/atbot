@@ -1,7 +1,7 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController;
 const cheerio = require('cheerio');
-const request = require('request');
+var rp = require('request-promise');
 var Queue = require('better-queue');
 
 var q = new Queue(function (input, cb) {
@@ -11,7 +11,7 @@ var q = new Queue(function (input, cb) {
         parse_mode: "markdown",
         reply_to_message_id: $.message.messageId
     }).then(function (msg) {
-        request({
+        rp({
             method: 'GET',
             url: 'https://oppo-in.custhelp.com/app/soft_update'
         }, (err, res, body) => {
@@ -28,7 +28,7 @@ var q = new Queue(function (input, cb) {
 
             // extract ota link from each page
             for (let i = 0; i < link.length; i++) {
-                request({
+                rp({
                     method: 'GET',
                     url: link[i]
                 }, (err, res, body) => {
@@ -80,3 +80,4 @@ class OppoController extends TelegramBaseController {
     }
 }
 module.exports = OppoController;
+
