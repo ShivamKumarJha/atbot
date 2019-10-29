@@ -12,6 +12,8 @@ for var in "$@"; do
     if echo ${var} | grep "https://drive.google.com/" && [[ -e "/usr/local/bin/gdrive" ]]; then
         FILE_ID="$(echo "${var:?}" | sed -Er -e 's/https.*id=(.*)/\1/' -e 's/https.*\/d\/(.*)\/(view|edit)/\1/' -e 's/(.*)(&|\?).*/\1/')"
         gdrive download "$FILE_ID" || exit 1
+    elif echo ${var} | grep "https://mega.nz/" && [[ -e "/usr/bin/megadl" ]]; then
+        megadl "${var}" --no-progress || exit 1
     else
         aria2c -q -s 16 -x 16 ${var} || wget ${var} || exit 1
     fi
