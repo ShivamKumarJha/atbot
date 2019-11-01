@@ -35,28 +35,28 @@ class GAppsController extends TelegramBaseController {
                 var kb = {
                     inline_keyboard: []
                 };
-                //https://github.com/opengapps/arm64/releases/download/20180301/open_gapps-arm64-7.1-pico-20180301.zip
+                //https://sourceforge.net/projects/opengapps/files/arm64/20191029/open_gapps-arm64-9.0-aroma-20191029.zip
                 nano_micro.push({
                     text: "Nano",
-                    url: "https://github.com/opengapps/" + type + "/releases/download/" + date + "/open_gapps-" + type + "-" + android_version + "-nano-" + date + ".zip"
+                    url: "https://sourceforge.net/projects/opengapps/files/" + type + "/" + date + "/open_gapps-" + type + "-" + android_version + "-nano-" + date + ".zip"
                 });
 
                 nano_micro.push({
                     text: "Micro",
-                    url: "https://github.com/opengapps/" + type + "/releases/download/" + date + "/open_gapps-" + type + "-" + android_version + "-micro-" + date + ".zip"
+                    url: "https://sourceforge.net/projects/opengapps/files/" + type + "/" +  date + "/open_gapps-" + type + "-" + android_version + "-micro-" + date + ".zip"
                 });
                 pico_mini.push({
                     text: "Pico",
-                    url: "https://github.com/opengapps/" + type + "/releases/download/" + date + "/open_gapps-" + type + "-" + android_version + "-pico-" + date + ".zip"
+                    url: "https://sourceforge.net/projects/opengapps/files/" + type + "/" + date + "/open_gapps-" + type + "-" + android_version + "-pico-" + date + ".zip"
                 });
                 pico_mini.push({
                     text: "Mini",
-                    url: "https://github.com/opengapps/" + type + "/releases/download/" + date + "/open_gapps-" + type + "-" + android_version + "-mini-" + date + ".zip"
+                    url: "https://sourceforge.net/projects/opengapps/files/" + type + "/" + date + "/open_gapps-" + type + "-" + android_version + "-mini-" + date + ".zip"
                 });
                 kb.inline_keyboard.push(
                     [{
                         text: "Aroma",
-                        url: "https://github.com/opengapps/" + type + "/releases/download/" + date + "/open_gapps-" + type + "-" + android_version + "-aroma-" + date + ".zip"
+                        url: "https://sourceforge.net/projects/opengapps/files/" + type + "/" + date + "/open_gapps-" + type + "-" + android_version + "-aroma-" + date + ".zip"
                     }]);
 
                 kb.inline_keyboard.push(nano_micro);
