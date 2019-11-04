@@ -9,7 +9,7 @@ for var in "$@"; do
     mkdir -p "$android_tools/input"
     cd "$android_tools/input"
     echo "Downloading ROM"
-    if echo ${var} | grep "https://drive.google.com/" && [[ -e "/usr/local/bin/gdrive" ]]; then
+    if echo ${var} | grep "https://drive.google.com/" && [[ ! -z "$(which gdrive)" ]]; then
         FILE_ID="$(echo "${var:?}" | sed -Er -e 's/https.*id=(.*)/\1/' -e 's/https.*\/d\/(.*)\/(view|edit)/\1/' -e 's/(.*)(&|\?).*/\1/')"
         gdrive download "$FILE_ID" || exit 1
     elif echo ${var} | grep "https://mega.nz/" && [[ -e "/usr/bin/megadl" ]]; then
