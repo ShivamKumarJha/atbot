@@ -35,7 +35,7 @@ var q = new Queue(function (input, cb) {
         });
     });
 }, {
-    concurrent: 1,
+    concurrent: 2,
     batchSize: 1
 })
 
