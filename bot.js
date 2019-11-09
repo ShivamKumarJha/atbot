@@ -20,14 +20,6 @@ require('fs').readdirSync(__dirname + '/handlers/').forEach(function (file) {
 // Routes
 tg.router
     .when(
-        new TextCommand('/ddt', 'ddtHandler', 'Creates a dummy device tree https://github.com/ShivamKumarJha/Dummy_DT'),
-        new exports["ddt"]()
-    )
-    .when(
-        new TextCommand('/dall', 'dallHandler', 'ddt + blobs + dump'),
-        new exports["dall"]()
-    )
-    .when(
         new TextCommand('/dump', 'dumpHandler', 'Pushes ROM dump to https://github.com/AndroidDumps'),
         new exports["dump"]()
     )

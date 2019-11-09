@@ -12,7 +12,7 @@ var q = new Queue(function (input, cb) {
         parse_mode: "markdown",
         reply_to_message_id: $.message.messageId
     }).then(function (msg) {
-        var dump = spawn(__dirname + "/../helpers/romextract.sh", [urlarg]);
+        var dump = spawn(__dirname + "/../helpers/dump.sh", [urlarg]);
         dump.stdout.on('data', function (data) {
             var message = data.toString();
             initialMessage = initialMessage + "\n" + message.trim()

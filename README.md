@@ -9,14 +9,8 @@
 /bloblist <Raw URL of all_files.txt>  
 _Generates proprietary-files.txt_
 
-/ddt <OTA URL>  
-_Creates a [Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)_
-
 /dump <OTA URL>  
-_Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps)_
-
-/dall <OTA URL>  
-_/ddt + /dump._
+_Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps) and creates a [Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)_
 
 /gdrive <URL>  
 _Generates direct download link for gdrive._
