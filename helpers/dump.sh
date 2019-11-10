@@ -17,6 +17,7 @@ for var in "$@"; do
     else
         aria2c -q -s 16 -x 16 ${var} || wget ${var} || exit 1
     fi
+    find -name "* *" -type f | rename 's/ /_/g'
     URL=$( ls "$android_tools/input/" )
     FILE=${URL##*/}
     EXTENSION=${URL##*.}

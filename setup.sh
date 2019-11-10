@@ -20,6 +20,9 @@ elif [[ -z "$(which node)" ]]; then
 elif [[ -z "$(which forever)" ]]; then
     echo "Install npm forever package!"
     echo "sudo npm install forever -g"
+elif [[ -z "$(which rename)" ]]; then
+    echo "Install rename package!"
+    echo "sudo apt install rename"
 elif [[ ! -e config.js ]]; then
     cp -a config.ex.js config.js
     echo "Please update $PROJECT_DIR/config.js!"
