@@ -15,7 +15,7 @@ for var in "$@"; do
     elif echo ${var} | grep "https://mega.nz/" && [[ -e "/usr/bin/megadl" ]]; then
         megadl "${var}" --no-progress || exit 1
     else
-        aria2c -q -s 16 -x 16 ${var} || wget ${var} || exit 1
+        aria2c -q -s 16 -x 16 ${var} -d "$android_tools/input" -o "otafile" || { echo "Download failed!"; exit 1; }
     fi
     find -name "* *" -type f | rename 's/ /_/g'
     URL=$( ls "$android_tools/input/" )
@@ -23,8 +23,9 @@ for var in "$@"; do
     EXTENSION=${URL##*.}
     UNZIP_DIR=${FILE/.$EXTENSION/}
     echo "Extracting ROM"
-    bash "$android_tools/tools/rom_extract.sh" "$android_tools/input/$FILE*"
+    bash "$android_tools/tools/rom_extract.sh" "$android_tools/input/$URL"
     bash "$android_tools/helpers/dumpyara_push.sh" "$android_tools/dumps/$UNZIP_DIR"
     bash "$android_tools/tools/dummy_dt.sh" "$android_tools/dumps/$UNZIP_DIR"
+    rm -rf "$android_tools/input/$URL"
 done
 rm -rf "$android_tools/"
