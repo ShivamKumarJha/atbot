@@ -11,7 +11,13 @@ var q = new Queue(function (input, cb) {
         parse_mode: "markdown",
         reply_to_message_id: $.message.messageId
     }).then(function (msg) {
-        var ddump = spawn(__dirname + "/../helpers/ddump.sh", [$.command.arguments[0], $.command.arguments[1]]);
+        var shell = require('shelljs');
+        var tfile = shell.exec('mktemp', {silent:true}).stdout;
+        console.log('Arg file: ', tfile);
+        for (var i = 0; i < $.command.arguments.length; i++) {
+            shell.exec('echo ' + $.command.arguments[i] + ' >> ' + tfile);
+        }
+        var ddump = spawn(__dirname + "/../helpers/ddump.sh", [tfile]);
         ddump.stdout.on('data', function (data) {
             var message = data.toString();
             initialMessage = initialMessage + "\n" + message.trim()
