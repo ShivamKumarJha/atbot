@@ -24,6 +24,10 @@ tg.router
         new exports["dump"]()
     )
     .when(
+        new TextCommand('/ddump', 'ddumpHandler', 'Pushes ROM dump to https://github.com/AndroidDumps'),
+        new exports["ddump"]()
+    )
+    .when(
         new TextCommand('/bloblist', 'bloblistHandler', 'Generates proprietary-files.txt'),
         new exports["bloblist"]()
     )

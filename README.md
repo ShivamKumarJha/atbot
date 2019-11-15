@@ -12,6 +12,9 @@ _Generates proprietary-files.txt_
 /dump <OTA URL>  
 _Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps) and creates a [Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)_
 
+/ddump <Full OTA URL> <Patch OTA URL>  
+_Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps) and creates a [Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)_
+
 /gdrive <URL>  
 _Generates direct download link for gdrive._
 
