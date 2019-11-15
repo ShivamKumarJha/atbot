@@ -3,6 +3,8 @@
 [[ -z "$1" ]] && exit 1
 android_tools="$(mktemp tgbotXXX -d --tmpdir=/home/$USER)"
 git clone -q https://github.com/ShivamKumarJha/android_tools.git "$android_tools" --depth 1
+export DUMMYDT=y
+export DUMPYARA=y
 export VERBOSE=n
 
 for var in "$@"; do
@@ -19,17 +21,8 @@ for var in "$@"; do
     fi
     find -name "* *" -type f | rename 's/ /_/g'
     URL=$( ls "$android_tools/input/" )
-    FILE=${URL##*/}
-    EXTENSION=${URL##*.}
-    UNZIP_DIR=${FILE/.$EXTENSION/}
     echo "Extracting ROM"
     bash "$android_tools/tools/rom_extract.sh" "$android_tools/input/$URL"
-    if [[ -d "$android_tools/dumps/$UNZIP_DIR" ]]; then
-        bash "$android_tools/helpers/dumpyara_push.sh" "$android_tools/dumps/$UNZIP_DIR"
-        bash "$android_tools/tools/dummy_dt.sh" "$android_tools/dumps/$UNZIP_DIR"
-    else
-        echo "Extraction failed!"
-    fi
     rm -rf "$android_tools/input/$URL"
 done
 rm -rf "$android_tools/"
