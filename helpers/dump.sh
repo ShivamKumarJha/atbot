@@ -17,7 +17,7 @@ for var in "$@"; do
     elif echo ${var} | grep "https://mega.nz/" && [[ -e "/usr/bin/megadl" ]]; then
         megadl "${var}" --no-progress || { echo "Download failed!"; rm -rf "$android_tools/"; exit 1; }
     else
-        aria2c -q -s 16 -x 16 ${var} -d "$android_tools/input" -o "otafile" || { echo "Download failed!"; rm -rf "$android_tools/"; exit 1; }
+        aria2c -q -s 16 -x 16 "$(echo ${var} | sed "s|bigota.d.miui.com|hugeota.d.miui.com|g" )" -d "$android_tools/input" -o "otafile" || { echo "Download failed!"; rm -rf "$android_tools/"; exit 1; }
     fi
     find -name "* *" -type f | rename 's/ /_/g'
     URL=$( ls "$android_tools/input/" )
