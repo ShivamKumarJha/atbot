@@ -10,6 +10,7 @@ export VERBOSE=n
 mkdir -p "$android_tools/input"
 cd "$android_tools/input"
 
+[[ "$( cat $1 | wc -l )" -lt 2 ]] && echo "Give atleast two URL's!" && rm -rf "$android_tools" && exit 1
 OTA_LINES=`cat $1`
 for OTA_LINK in $OTA_LINES; do
     ((OTA_NO++))
