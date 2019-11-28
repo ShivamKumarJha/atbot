@@ -72,6 +72,14 @@ tg.router
         new exports["github"]()
     )
     .when(
+        new TextCommand('/getdt', 'dtHandler', 'Searches any existing device tree'),
+        new exports["getdt"]()
+    )
+    .when(
+        new TextCommand('/getblob', 'blobHandler', 'Searches any existing vendor tree'),
+        new exports["getblob"]()
+    )
+    .when(
         new TextCommand('/realme', 'realmeHandler', 'Realme OTA links'),
         new exports["realme"]()
     )
