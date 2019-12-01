@@ -19,7 +19,6 @@ for OTA_LINK in $OTA_LINES; do
     OTAFP="$( find "$android_tools/input" -name "metadata" -exec cat {} \; | grep -iE "post-build=" | sed "s|.*=||1" )"
     OTAIN="$( find "$android_tools/input" -name "metadata" -exec cat {} \; | grep -iE "post-build-incremental=" | sed "s|.*=||1" )"
     echo -e "$OTAFP\n$OTAIN"
-    mv ${OTA_NO} "$OTAIN"
 done
 
 OTA_LIST=($(find $android_tools/input -type f -printf "$android_tools/input/%P\n" | sort -uf))
