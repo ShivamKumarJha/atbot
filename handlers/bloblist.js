@@ -25,7 +25,7 @@ var q = new Queue(function (input, cb) {
             console.log('bloblist file: ', tfile);
             shell.exec('git init', {silent:true}).stdout;
             shell.exec('git add proprietary-files.txt', {silent:true}).stdout;
-            shell.exec('git commit -m proprietary-files.txt', {silent:true}).stdout;
+            shell.exec('git -c user.name=ShivamKumarJha -c user.email=jha.shivam3@gmail.com commit -sm proprietary-files.txt', {silent:true}).stdout;
             shell.exec('git push https://$GIT_TOKEN@github.com/ShivamKumarJha/bloblists.git master --force', {silent:true}).stdout;
             var commitid = shell.exec('git log --format=format:%H | head -n 1', {silent:true}).stdout;
             var filelink = 'https://raw.githubusercontent.com/ShivamKumarJha/bloblists/' + commitid + '/proprietary-files.txt';
