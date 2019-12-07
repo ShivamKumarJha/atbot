@@ -8,6 +8,6 @@ export DUMPYARA=y
 export VERBOSE=n
 
 for var in "$@"; do
-    bash "$android_tools/tools/rom_extract.sh" "${var}"
+    bash "$android_tools/tools/rom_extract.sh" "$(echo ${var} | sed "s|bigota.d.miui.com|hugeota.d.miui.com|g" )"
 done
 rm -rf "$android_tools/"
