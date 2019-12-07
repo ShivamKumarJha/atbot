@@ -15,6 +15,9 @@ _Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps) and creates 
 /ddump <Full OTA URL> <Patch OTA URL>  
 _Pushes ROM dump to [AndroidDumps](https://github.com/AndroidDumps) and creates a [Dummy_DT](https://github.com/ShivamKumarJha/Dummy_DT)_
 
+/kernel <kernel zip link> <repo name> <tag suffix>  
+_Rebase OEM compressed kernel source to its best CAF base_
+
 /gdrive <URL>  
 _Generates direct download link for gdrive._
 

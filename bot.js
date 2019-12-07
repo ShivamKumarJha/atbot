@@ -28,6 +28,10 @@ tg.router
         new exports["ddump"]()
     )
     .when(
+        new TextCommand('/kernel', 'kernelHandler', 'Rebase OEM compressed kernel source to its best CAF base'),
+        new exports["kernel"]()
+    )
+    .when(
         new TextCommand('/bloblist', 'bloblistHandler', 'Generates proprietary-files.txt'),
         new exports["bloblist"]()
     )
