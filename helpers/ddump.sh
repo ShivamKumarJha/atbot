@@ -7,6 +7,7 @@ android_tools="$(mktemp tgbotXXX -d --tmpdir=/home/$USER)"
 git clone -q https://github.com/ShivamKumarJha/android_tools.git "$android_tools" --depth 1
 export DUMMYDT=y
 export DUMPYARA=y
+export ORGMEMBER=y
 export VERBOSE=n
 
 mkdir -p "$android_tools/input"
