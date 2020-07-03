@@ -4,7 +4,7 @@
 ATDIR="$(mktemp tgbotXXX -d --tmpdir=/home/$USER)"
 git clone -q https://github.com/ShivamKumarJha/android_tools.git "$ATDIR" --depth 1
 export DUMMYDT=y
-export DUMPYARA=y
+export DUMPPUSH=n
 export ORGMEMBER=y
 export VERBOSE=n
 
