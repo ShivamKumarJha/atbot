@@ -43,7 +43,7 @@ var q = new Queue(function (input, cb) {
                         const downloaddevice = linstance(el).html().replace("Latest Software Version for ","");
                         devicelist.push(downloaddevice);
                     });
-                    linstance('#rn_SoftUpdate_18_download').each((i, el) => {
+                    linstance('#rn_SoftUpdate_17_download').each((i, el) => {
                         const downloadlink = linstance(el).attr('href');
                         deviceota.push(downloadlink);
                     });
