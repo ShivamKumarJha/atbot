@@ -17,15 +17,16 @@ class RealmeController extends TelegramBaseController {
             var realmelinks = "Global ROMs\n";
 
             instance('.software-button').each((i, el) => {
-                const item = instance(el).attr('title').replace(" Software Download","");
+                const item = instance(el).attr('title');
                 const link = instance(el).attr('data-href');
                 realmelinks += "[" + item + "](" + link + ")\n";
+                console.log(item);
+                console.log(link);
             });
-            //console.log(realmelinks);
             $.sendMessage(realmelinks, {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
-            }).catch(err => console.log(err))
+            })
         });
 
         rp({
@@ -38,15 +39,16 @@ class RealmeController extends TelegramBaseController {
             var realmelinks = "China ROMs\n";
 
             instance('.software-button').each((i, el) => {
-                const item = instance(el).attr('title').replace(" Software Download","");
+                const item = instance(el).attr('title');
                 const link = instance(el).attr('data-href');
                 realmelinks += "[" + item + "](" + link + ")\n";
+                console.log(item);
+                console.log(link);
             });
-            //console.log(realmelinks);
             $.sendMessage(realmelinks, {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
-            }).catch(err => console.log(err))
+            })
         });
     }
 
